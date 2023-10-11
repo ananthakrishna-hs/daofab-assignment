@@ -43,4 +43,25 @@ public class ParentServiceImpl implements IParentService {
             throw new Exception("Unable to read file");
         }
     }
+
+    public Parent getParentById(Integer parentId) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        TypeReference<List<Parent>> typeReference = new TypeReference<List<Parent>>(){};
+        System.out.println(System.getProperty("user.dir"));
+        InputStream inputStream = TypeReference.class.getResourceAsStream("/static/Parent.json");
+
+        try {
+            List<Parent> parentList = mapper.readValue(inputStream, typeReference);
+            Collections.sort(parentList, (a, b) -> a.getId().compareTo(b.getId()));
+
+            log.debug("Fetching records for parent with ID:" + parentId);
+
+            Parent element = parentList.stream().filter(ele -> ele.getId().equals(parentId)).findFirst().orElse(null);
+
+            return element;
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            throw new Exception("Unable to read file");
+        }
+    }
 }
