@@ -19,6 +19,10 @@ import com.anantha.service.impl.ChildServiceImpl;
 import com.anantha.service.impl.ParentServiceImpl;
 import com.anantha.service.impl.ResponseHandlerImpl;
 
+/*
+ * Main route prefix
+ * @author anantha
+ */
 @RestController
 @RequestMapping("/api")
 public class ParentController {
@@ -31,6 +35,12 @@ public class ParentController {
   @Autowired
   private ChildServiceImpl childService;
 
+  /**
+   * To fetch all parents
+   * @param limit Items per page
+   * @param skip Offset of list
+   * @return Paginated response
+   */
   @GetMapping("/parents")
   public ResponseEntity<Object> getParents(@RequestParam(name = "size", required = false, defaultValue = "2") Integer limit, @RequestParam(name = "skip", required = false, defaultValue = "0") Integer skip) {
     try {
@@ -42,6 +52,11 @@ public class ParentController {
     }
   }
 
+  /**
+   * To fetch children list by parent ID
+   * @param parentId ID of parent transaction
+   * @return
+   */
   @GetMapping("/children")
   public ResponseEntity<Object> getChildren(@RequestParam(name = "parentId") Integer parentId) {
     try {

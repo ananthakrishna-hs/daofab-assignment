@@ -9,6 +9,9 @@ import com.anantha.service.IResponseHandler;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author anantha
+ */
 @Service
 public class ResponseHandlerImpl implements IResponseHandler {
   public ResponseEntity<Object> generateResponse(Boolean status, String message, Object responseData, HttpStatus httpStatus) {
