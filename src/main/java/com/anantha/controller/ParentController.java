@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.anantha.entity.Parent;
-import com.anantha.service.ParentService;
-import com.anantha.service.ResponseHandler;
+import com.anantha.service.impl.ParentServiceImpl;
+import com.anantha.service.impl.ResponseHandlerImpl;
 
 @RestController
 @RequestMapping("/api")
 public class ParentController {
   @Autowired
-  private ParentService parentService;
+  private ParentServiceImpl parentService;
 
   @Autowired
-  private ResponseHandler responseService;
+  private ResponseHandlerImpl responseService;
 
   @GetMapping("/parents")
   public ResponseEntity<Object> getParents(@RequestParam(name = "size", required = false, defaultValue = "2") Integer limit, @RequestParam(name = "skip", required = false, defaultValue = "0") Integer skip) {
