@@ -1,8 +1,7 @@
 package com.anantha.service;
 
-import java.util.List;
-
 import com.anantha.entity.Parent;
+import com.anantha.entity.Parents;
 
 /**
  * @author anantha
@@ -15,7 +14,7 @@ public interface IParentService {
      * @return Paginated list of parent txns
      * @throws Exception
      */
-    public List<Parent> getParents(Integer limit, Integer skip) throws Exception;
+    public Parents getAllParents(Integer limit, Integer skip) throws Exception;
 
     /**
      * Fetch parent txn by ID

@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.anantha.entity.Child;
+import com.anantha.entity.Children;
 import com.anantha.service.IChildService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ChildServiceImpl implements IChildService  {
     private static final Logger log = LogManager.getLogger(ChildServiceImpl.class.getName());
 
-    public List<Child> getChildren(Integer parentId) throws Exception {
+    public Children getChildrenByParentId(Integer parentId) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<List<Child>> typeReference = new TypeReference<List<Child>>(){};
         System.out.println(System.getProperty("user.dir"));
@@ -34,7 +35,9 @@ public class ChildServiceImpl implements IChildService  {
 
             List<Child> subList = childrenList.stream().filter(element -> element.getParentId().equals(parentId)).toList();
             
-            return subList;
+            Children data = new Children(subList.size(), subList);
+
+            return data;
         } catch (Exception e) {
             log.error(e.getMessage());
             throw new Exception("Unable to read file");

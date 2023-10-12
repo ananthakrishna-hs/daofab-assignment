@@ -1,8 +1,6 @@
 package com.anantha.service;
 
-import java.util.List;
-
-import com.anantha.entity.Child;
+import com.anantha.entity.Children;
 
 /**
  * @author anantha
@@ -14,5 +12,5 @@ public interface IChildService {
      * @return List of children txns
      * @throws Exception
      */
-    public List<Child> getChildren(Integer parentId) throws Exception;
+    public Children getChildrenByParentId(Integer parentId) throws Exception;
 }
